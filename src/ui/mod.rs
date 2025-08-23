@@ -243,7 +243,7 @@ fn create_main_content(markdown_renderer: &Rc<MarkdownRenderer>) -> (adw::Naviga
     save_button.set_tooltip_text(Some("Save Document (Ctrl+S)"));
     save_button.add_css_class("flat");
 
-    let view_mode_button = Button::from_icon_name("view-sidebar-end-symbolic");
+    let view_mode_button = Button::from_icon_name("sidebar-show-right-symbolic");
     view_mode_button.set_tooltip_text(Some("Toggle Preview"));
     view_mode_button.add_css_class("flat");
 
@@ -512,7 +512,7 @@ fn setup_button_handlers(
                 status_label.set_text("Preview hidden");
             } else {
                 main_paned.set_end_child(Some(&preview_scroll));
-                button.set_icon_name("view-sidebar-end-symbolic");
+                button.set_icon_name("sidebar-show-right-symbolic");
                 button.set_tooltip_text(Some("Hide Preview"));
                 status_label.set_text("Preview shown");
             }
