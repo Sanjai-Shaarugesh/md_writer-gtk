@@ -5,4 +5,9 @@ edition = "2024"
 
 [dependencies]
 adw = { version = "0.8.0", package = "libadwaita", features = ["v1_5"] }
+dir = "0.1.2"
 gtk = { version = "0.10.0", package = "gtk4", features = ["v4_12"] }
+pulldown-cmark = "0.13.0"
+serde = "1.0.219"
+serde_json = "1.0.143"
+tokio = "1.47.1"
