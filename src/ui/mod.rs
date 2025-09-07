@@ -19,7 +19,7 @@ pub fn build_ui(app: &Application) {
         .build();
 
     // Create markdown renderer
-    let markdown_renderer = Rc::new(MarkdownRenderer::new());
+    let markdown_renderer = Rc::new(MarkdownRenderer::new(None));
     let file_manager = Rc::new(RefCell::new(FileManager::new()));
 
     // Create split view for main layout
@@ -47,8 +47,9 @@ pub fn build_ui(app: &Application) {
     let update_preview = {
         let markdown_renderer = markdown_renderer.clone();
         let preview_buffer = main_elements.preview_buffer.clone();
+        let preview_view = main_elements.preview_view.clone();
         move |text: &str| {
-            markdown_renderer.render_markdown(&preview_buffer, text);
+            markdown_renderer.render_markdown(&preview_buffer, text, &preview_view);
         }
     };
 
@@ -120,6 +121,7 @@ struct MainElements {
     text_buffer: TextBuffer,
     text_view: TextView,
     preview_buffer: TextBuffer,
+    preview_view: TextView, // Added this field
     preview_scroll: gtk::ScrolledWindow,
     main_paned: gtk::Paned,
     main_title: WindowTitle,
@@ -333,6 +335,7 @@ fn create_main_content(markdown_renderer: &Rc<MarkdownRenderer>) -> (adw::Naviga
         text_buffer,
         text_view,
         preview_buffer,
+        preview_view, // Include the preview_view in the struct
         preview_scroll,
         main_paned,
         main_title,
